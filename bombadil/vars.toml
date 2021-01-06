@@ -1,0 +1,4 @@
+wallpaper = "$HOME/dotfiles/wallpapers/coffee.jpg"
+terminal = "alacritty"
+gtk = "Arc-Lighter"
+gtk_icons = "Arc"

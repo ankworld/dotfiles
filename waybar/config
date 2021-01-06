@@ -1,0 +1,102 @@
+{
+    "position": "top",
+    "height": 30,
+    "modules-left": ["sway/workspaces", "cpu", "memory", "temperature","sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["pulseaudio", "network", "battery", "clock", "tray"],
+    // Modules configuration
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{icon}",
+	 	"persistent_workspaces": {
+	 		"1": [],
+	 		"2": [],
+	 		"3": [],
+	 		"4": [],
+	},
+         	"format-icons": {
+             		"1": "1",
+             		"2": "2",
+             		"3": "3",
+             		"4": "4",
+             		"5": "5",
+             		"6": "6",
+             		"7": "7",
+             		"8": "8",
+             		"9": "9",
+             		"10": "10"
+         }
+    },
+    "cpu": {
+        "interval": 5,
+        "tooltip": false,
+        "format": " {usage}%", // Icon: microchip
+        "states": {
+          "warning": 70,
+          "critical": 90
+        },
+        "on-click": "alacritty -e htop"
+    },
+    "memory": {
+        "interval": 5,
+        "format": " {}%", // Icon: memory
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "alacritty -e htop"
+    },
+    "temperature": {
+        "critical-threshold": 90,
+        "interval": 5,
+        //"format": "{icon} {temperatureC}°C",
+	    "format": "{icon} {temperatureC}°",
+        "format-icons": [
+            "", // Icon: temperature-empty
+            "", // Icon: temperature-quarter
+            "", // Icon: temperature-half
+            "", // Icon: temperature-three-quarters
+            ""  // Icon: temperature-full
+        ],
+        "tooltip": false
+    },
+	"clock": {
+		"format": "{:%H:%M}",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        	"format-alt": "{:%Y-%m-%d}"
+
+	},
+	"battery": {
+        	"states": {
+            		"warning": 30,
+            		"critical": 15
+        	},
+        	"format": "{icon} {capacity}%",
+        	"format-charging": " {capacity}%",
+        	"format-plugged": " {capacity}%",
+        	"format-alt": "{time} {icon}",
+        	"format-full": " {capacity}%",
+        	"format-icons": ["", "", "", "", "", "", "", "", "", ""],
+            "on-click": "gnome-power-statistics" 
+	},
+	"network": {
+        	"format-wifi": "  {essid}",
+        	"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        	"format-linked": "{ifname} (No IP) ",
+        	"format-disconnected": " Disconnected",
+        	"format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "on-click": "gnome-control-center network"
+	},
+	"pulseaudio": {
+		"format": "{icon}  {volume}%",
+        "format-muted": "婢 Muted",
+        "format-icons": {
+            "headphone": "",
+            "portable": "",
+            "default": ["奄", "奔", "墳"]
+        },
+        "on-click": "gnome-control-center sound"
+    }
+}
+

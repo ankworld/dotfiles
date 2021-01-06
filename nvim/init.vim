@@ -24,8 +24,9 @@ if dein#load_state('/home/ankworld/.local/share/dein')
   call dein#add('Shougo/neosnippet-snippets')
 
   " UI
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('arcticicestudio/nord-vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('mgee/lightline-bufferline')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('mhinz/vim-startify')
   " Tool
@@ -36,6 +37,7 @@ if dein#load_state('/home/ankworld/.local/share/dein')
   call dein#add('vim-syntastic/syntastic')
 
   " Language
+  call dein#add('google/vim-jsonnet')
   call dein#add('rust-lang/rust.vim')
 
   " Required:
@@ -57,15 +59,30 @@ syntax enable
 let g:deoplete#enable_at_startup = 1
 
 " UI Setting
-let g:airline_theme='luna'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_min_count = 2
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = '⎇ '
-let g:airline_symbols.dirty= ''
+set termguicolors
+let g:nord_italic = 1
+let g:nord_underline = 1
+colorscheme nord
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ }
+      \ }
+
+" Integrate lightline-bufferline with lightline
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
@@ -114,15 +131,21 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " FZF Settings
+
+" Hide status bar while using fzf commands
+if has('nvim') || has('gui_running')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
+endif
+
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'rounded' } }
 let g:fzf_tags_command = 'ctags -R'
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
 let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build/**' --glob '!.dart_tool/**' --glob '!.idea'"
 
 " advanced grep(faster with preview)

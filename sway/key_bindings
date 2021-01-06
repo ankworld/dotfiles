@@ -1,0 +1,138 @@
+# Key bindings
+
+# Bombadil profile
+# bindsym --to-code $mod+o exec zsh -c switch_bombadil_profile
+
+# Quick launchers
+bindsym --to-code $mod+Return exec $term
+bindsym --to-code $mod+G exec $launcher
+bindsym --to-code $mod+P exec $pass
+bindsym --to-code $mod+x exec $lock
+
+# Kill focused window
+bindsym --to-code $mod+Shift+a kill
+
+# Drag modifier
+floating_modifier $mod
+
+# Reload the configuration file
+bindsym --to-code $mod+Shift+r reload
+
+# Exit sway/i3 
+bindsym --to-code $mod+Shift+e exit
+
+# Move your focus around
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+
+# or use $mod+[up|down|left|right]
+bindsym --to-code $mod+Left focus left
+bindsym --to-code $mod+Down focus down
+bindsym --to-code $mod+Up focus up
+bindsym --to-code $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+
+# ditto, with arrow keys
+bindsym --to-code $mod+Shift+Left move left
+bindsym --to-code $mod+Shift+Down move down
+bindsym --to-code $mod+Shift+Up move up
+bindsym --to-code $mod+Shift+Right move right
+
+bindsym --to-code Ctrl+Alt+Shift+H move workspace to output left
+bindsym --to-code Ctrl+Alt+Shift+J move workspace to output down
+bindsym --to-code Ctrl+Alt+Shift+K move workspace to output up
+bindsym --to-code Ctrl+Alt+Shift+L move workspace to output right
+
+# Workspaces:
+# switch to wbindsym --to-code $mod+ampersand workspace $ws1
+bindsym --to-code $mod+ampersand workspace $ws1
+bindsym --to-code $mod+eacute workspace $ws2
+bindsym --to-code $mod+quotedbl workspace $ws3
+bindsym --to-code $mod+apostrophe workspace $ws4
+bindsym --to-code $mod+parenleft workspace $ws5
+bindsym --to-code $mod+minus workspace $ws6
+bindsym --to-code $mod+egrave workspace $ws7
+bindsym --to-code $mod+underscore workspace $ws8
+bindsym --to-code $mod+ccedilla workspace $ws9
+bindsym --to-code $mod+agrave workspace $ws10
+
+# Move focused container to workspace
+bindsym --to-code $mod+Shift+ampersand move container to workspace $ws1
+bindsym --to-code $mod+Shift+eacute move container to workspace $ws2
+bindsym --to-code $mod+Shift+quotedbl move container to workspace $ws3
+bindsym --to-code $mod+Shift+apostrophe move container to workspace $ws4
+bindsym --to-code $mod+Shift+parenleft move container to workspace $ws5
+bindsym --to-code $mod+Shift+minus move container to workspace $ws6
+bindsym --to-code $mod+Shift+egrave move container to workspace $ws7
+bindsym --to-code $mod+Shift+underscore move container to workspace $ws8
+bindsym --to-code $mod+Shift+ccedilla move container to workspace $ws9
+bindsym --to-code $mod+Shift+agrave move container to workspace $ws10
+
+# Fn key 
+bindsym --to-code XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5% ; zsh -c wob_volume > $SWAYSOCK.wob"
+bindsym --to-code XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%; zsh -c wob_volume > $SWAYSOCK.wob"
+bindsym --to-code XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym --to-code XF86MonBrightnessUp exec "exec zsh -c brightness_up"
+bindsym --to-code XF86MonBrightnessDown exec "brightnessctl set 10%-"
+
+## Screenshots
+bindsym --to-code --release Print exec zsh -c screenshot
+bindsym --to-code --release Shift+Print exec zsh -c fullscreenshot
+
+# Split mod
+bindsym --to-code $mod+b splith
+bindsym --to-code $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+t layout tabbed
+bindsym --to-code $mod+n layout toggle split
+
+# Make the current focus fullscreen
+bindsym --to-code $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym --to-code $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym --to-code $mod+space focus mode_toggle
+
+# move focus to the parent container
+bindsym --to-code $mod+a focus parent
+
+# Scratchpad:
+## Move the currently focused window to the scratchpad
+bindsym --to-code $mod+Shift+Tab move scratchpad
+
+# Notification center
+bindsym --to-code $mod+Shift+N exec "kill -s USR1 $(pidof deadd-notification-center)"
+
+## If there are multiple scratchpad windows, this command cycles through them.
+bindsym --to-code $mod+Tab scratchpad show
+
+# Resizing containers:
+mode "resize" {
+    bindsym --to-code $up resize shrink height 10 px or 10 ppt
+    bindsym --to-code $down resize grow height 10 px or 10 ppt
+    bindsym --to-code $right resize grow width 10 px or 10 ppt
+    bindsym --to-code $left resize shrink width 10 px or 10 ppt
+
+    bindsym --to-code Left resize shrink width 10 px or 10 ppt
+    bindsym --to-code Down resize grow height 10 px or 10 ppt
+    bindsym --to-code Up resize shrink height 10 px or 10 ppt
+    bindsym --to-code Right resize grow width 10 px or 10 ppt
+
+    bindsym --to-code Return mode "default"
+    bindsym --to-code Escape mode "default"
+}
+
+bindsym --to-code $mod+r mode "resize"
+
+

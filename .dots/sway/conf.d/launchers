@@ -1,0 +1,3 @@
+set $menu wofi --show drun --allow-images
+
+bindsym --to-code $mod+g exec $menu

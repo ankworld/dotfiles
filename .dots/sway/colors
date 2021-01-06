@@ -1,0 +1,9 @@
+# Color                 border                                background                                 text                               indicator                               child_border
+client.focused          #ff9900           #e8f1f9            #18405a          #314c84          #8462e5
+
+client.focused_inactive #fcfbfb  #e8f1f9   #18405a #607d93 #fcfbfb
+
+client.unfocused        #fcfbfb         #e8f1f9          #18405a        #607d93        #fcfbfb
+
+client.urgent           #ff3300            #e8f1f9             #18405a           #607d93           #fcfbfb
+

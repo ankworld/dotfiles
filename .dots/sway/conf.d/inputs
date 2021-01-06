@@ -1,0 +1,14 @@
+### Touchpad
+input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
+    # accel_profile flat
+    drag enabled
+    tap enabled
+}
+
+### Keyboards
+input 6940:6957:ckb1:_Corsair_Gaming_K95_RGB_PLATINUM_Keyboard_vKB {
+    xkb_layout us,th
+    xkb_options grp:win_space_toggle
+    xkb_numlock enable
+}
+

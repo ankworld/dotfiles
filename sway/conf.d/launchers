@@ -1,0 +1,3 @@
+set $menu __[launcher]__
+
+bindsym --to-code $mod+g exec $menu

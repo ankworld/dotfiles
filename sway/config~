@@ -1,0 +1,27 @@
+# On start
+font pango:Roboto Regular 11
+exec __[notification]__
+exec kanshi
+output * bg __[wallpaper]__ stretch
+
+### Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term __[terminal]__
+set $bar __[bar]__
+set $launcher __[launcher]__
+set $pass wofipassmenu
+set $lock "swaylock -c 000000"
+
+include workspaces
+include color_vars
+include colors
+include window_placement
+include key_bindings
+include inputs
+include bar
+### include gtk_config
